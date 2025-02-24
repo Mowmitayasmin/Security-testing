@@ -16,9 +16,9 @@ on:
     branches: [ $default-branch, $protected-branches ]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ $default-branch ]
+    branches: [ $main-branch ]
   schedule:
-    - cron: $cron-weekly
+    - cron: '30 5 * * 1,3'
 
 jobs:
   bandit:
