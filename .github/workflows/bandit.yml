@@ -16,6 +16,7 @@ jobs:
     permissions:
       contents: read # Required for actions/checkout to fetch code
       security-events: write # Required for GitHub Security tab reporting
+      actions: read # ONLY include this if the repo is private
 
     runs-on: ubuntu-latest
     steps:
