@@ -1,30 +1,24 @@
-# Bandit security scan workflow for Python
-
 name: Bandit
 on:
   push:
-    branches: 
-      - main
+    branches: [ main ]
   pull_request:
-    branches: 
-      - main
+    branches: [ main ]
   schedule:
     - cron: '0 12 * * 0'
 
+# ✅ Add this to restrict permissions at the global level
+permissions:
+  contents: read # Allows GitHub Actions to fetch code
+  security-events: write # Allows uploading security analysis results
+
 jobs:
   bandit:
-    permissions:
-      contents: read # Required for actions/checkout to fetch code
-      security-events: write # Required for GitHub Security tab reporting
-      actions: read # ONLY include this if the repo is private
-
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Run Bandit Scan
+      - uses: actions/checkout@v4
+      - name: Bandit Scan
         uses: shundor/python-bandit-scan@ab1d87dfccc5a0ffab88be3aaac6ffe35c10d6cd
         with:
-          exit_zero: true # Continue even if vulnerabilities are found
+          exit_zero: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
