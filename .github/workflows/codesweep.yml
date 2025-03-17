@@ -1,22 +1,20 @@
-name: "HCL AppScan CodeSweep"
+name: Security Scan
 
 on:
-  push:
-    branches:
-      - feature-security-scan
   pull_request:
-    types: [opened, synchronize, reopened]
     branches:
-      - feature-security-scan
+      - main
 
 jobs:
   security-scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Run AppScan CodeSweep
         uses: HCL-TECH-SOFTWARE/appscan-codesweep-action@v2.1
         with:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          status: 'failure'
+          publish_on_merge: false
+          personal_scan: true
