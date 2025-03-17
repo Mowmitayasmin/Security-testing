@@ -22,8 +22,9 @@ jobs:
 
       - name: Run AppScan CodeSweep
         uses: HCL-TECH-SOFTWARE/appscan-codesweep-action@v2.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           status: 'failure'
           publish_on_merge: false
           personal_scan: true
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
