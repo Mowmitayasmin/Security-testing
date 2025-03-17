@@ -1,6 +1,9 @@
 name: Security Scan
 
 on:
+  push:
+    branches:
+      - feature-security-scan
   pull_request:
     branches:
       - main
@@ -8,6 +11,11 @@ on:
 jobs:
   security-scan:
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
