@@ -1,4 +1,4 @@
-name: Security Scan
+name: HCL AppScan CodeSweep
 
 on:
   push:
