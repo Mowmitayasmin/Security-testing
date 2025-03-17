@@ -26,3 +26,4 @@ jobs:
           status: 'failure'
           publish_on_merge: false
           personal_scan: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
